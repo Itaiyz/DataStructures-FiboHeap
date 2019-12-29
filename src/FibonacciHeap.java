@@ -117,10 +117,42 @@ public class FibonacciHeap {
 	 * public void meld (FibonacciHeap heap2)
 	 *
 	 * Meld the heap with heap2
+	 * 
+	 * Complexity: O(1)
 	 *
 	 */
 	public void meld(FibonacciHeap heap2) {
-		return; // should be replaced by student code
+
+		if (heap2.isEmpty()) {
+			return;
+		}
+
+		if (this.isEmpty()) {
+			this.min = heap2.findMin();
+			this.size = heap2.size();
+			this.numTrees = heap2.numTrees;
+			this.numMarked = heap2.numMarked;
+		} else {
+			HeapNode newNode = heap2.findMin();
+			HeapNode newNodePrev = newNode.getPrev();
+
+			newNodePrev.setNext(this.findMin());
+			newNode.setPrev(this.findMin().getPrev());
+
+			this.findMin().getPrev().setNext(newNode);
+			this.findMin().setPrev(newNodePrev);
+			// Test this last part when inserting into a heap with one element
+
+			// Replace min if needed
+			if (this.findMin().getKey() > newNode.getKey()) {
+				this.min = newNode;
+			}
+			this.size += heap2.size();
+			this.numTrees += heap2.numTrees;
+			this.numMarked += heap2.numMarked;
+		}
+
+		return;
 	}
 
 	/**
