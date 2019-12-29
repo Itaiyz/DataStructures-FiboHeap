@@ -69,9 +69,17 @@ public class FibonacciHeap {
 	 *
 	 * Creates a node (of type HeapNode) which contains the given key, and
 	 * inserts it into the heap.
+	 * 
+	 * Calls insertNode which is O(1)
+	 * 
+	 * Complexity: O(1)
+	 * 
 	 */
 	public HeapNode insert(int key) {
-		return new HeapNode(key); // should be replaced by student code
+
+		HeapNode newNode = new HeapNode(key);
+
+		return insertNode(newNode);
 	}
 
 	/**
