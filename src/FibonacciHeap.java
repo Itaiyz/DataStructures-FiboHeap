@@ -66,10 +66,49 @@ public class FibonacciHeap {
 	 * public void deleteMin()
 	 *
 	 * Delete the node containing the minimum key.
+	 * 
+	 * Complexity: O(n)
 	 *
 	 */
 	public void deleteMin() {
-		return; // should be replaced by student code
+		if (isEmpty()) {
+			return;
+		}
+
+		HeapNode minNode = this.findMin();
+		if (minNode.getChild() != null) {
+
+			FibonacciHeap heap2 = new FibonacciHeap();
+
+			// Find minimum child, removing parent pointers
+			heap2.min = minNode.getChild();
+			HeapNode node = minNode.getChild();
+			do {
+				if (heap2.findMin().getKey() > node.getKey()) {
+					heap2.min = node;
+				}
+				node.setParent(null);
+				// If node is marked, it becomes a root and so unmarked
+				if (node.isMark()) {
+					heap2.numMarked -= 1;
+					node.setMark(false);
+				}
+				node = node.getNext();
+			} while (node != minNode.getChild());
+
+			// Adding minNode's children but removing minNode
+			heap2.numTrees = minNode.getRank() - 1;
+			heap2.size = -1;
+
+			this.meld(heap2);
+			
+			//Removing minNode from root list
+			minNode.getPrev().setNext(minNode.getNext());
+			minNode.getNext().setPrev(minNode.getPrev());
+			
+
+		}
+		//Add case where minNode has no children
 
 	}
 
