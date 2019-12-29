@@ -133,10 +133,21 @@ public class FibonacciHeap {
 	 * Return a counters array, where the value of the i-th entry is the number
 	 * of trees of order i in the heap.
 	 * 
+	 * Complexity: O(Max(#Trees,log n))
+	 * 
 	 */
 	public int[] countersRep() {
-		int[] arr = new int[42];
-		return arr; // to be replaced by student code
+		int[] arr = new int[2
+				* (int) (Math.log(this.size()) / Math.log(2) + 1)];
+
+		HeapNode node = this.findMin();
+
+		do {
+			arr[node.getRank()] += 1;
+			node = node.getNext();
+		} while (node != this.findMin());
+
+		return arr;
 	}
 
 	/**
