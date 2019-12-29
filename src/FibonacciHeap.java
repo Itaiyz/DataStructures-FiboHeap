@@ -16,8 +16,8 @@ public class FibonacciHeap {
 	protected HeapNode min = null;
 	protected int numTrees = 0;
 	protected int numMarked = 0;
-	protected static int totalLinks=0;
-	protected static int totalCuts=0;
+	protected static int totalLinks = 0;
+	protected static int totalCuts = 0;
 
 	// For deleting an arbitrary key
 	protected static final int NEG_INFTY = Integer.MIN_VALUE;
