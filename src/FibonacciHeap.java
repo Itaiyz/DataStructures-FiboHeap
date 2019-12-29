@@ -141,10 +141,15 @@ public class FibonacciHeap {
 					arr[node.getRank()] = node;
 				} else {
 					this.link(node, arr[node.getRank()]);
-					arr[node.getRank()] = null;
+					if (node.getParent() == null) {
+						arr[node.getRank()-1] = null;
+					} else {
+						node=node.getParent();
+						arr[node.getRank()-1] = null;
+					}
 				}
-				
-				//Update minimum
+
+				// Update minimum
 				if (this.findMin().getKey() > node.getKey()) {
 					this.min = node;
 				}
