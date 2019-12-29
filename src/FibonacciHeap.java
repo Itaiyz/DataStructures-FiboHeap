@@ -137,7 +137,7 @@ public class FibonacciHeap {
 		} else {
 			this.size -= 1;
 			this.numTrees -= 1;
-			if (size > 1) {
+			if (size > 0) {
 				// Removing minNode from root list
 				minNode.getPrev().setNext(minNode.getNext());
 				minNode.getNext().setPrev(minNode.getPrev());
