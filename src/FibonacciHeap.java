@@ -68,6 +68,8 @@ public class FibonacciHeap {
 	 *
 	 * Delete the node containing the minimum key.
 	 * 
+	 * Calls successiveLinking which is O(n)
+	 * 
 	 * Complexity: O(n)
 	 *
 	 */
@@ -102,11 +104,21 @@ public class FibonacciHeap {
 			heap2.size = -1;
 
 			this.meld(heap2);
-			
-			//Removing minNode from root list
+
+			// Removing minNode from root list
 			minNode.getPrev().setNext(minNode.getNext());
 			minNode.getNext().setPrev(minNode.getPrev());
-			
+
+		} else {
+			// Removing minNode from root list
+			minNode.getPrev().setNext(minNode.getNext());
+			minNode.getNext().setPrev(minNode.getPrev());
+		}
+
+		this.successiveLinking();
+
+	}
+
 	/**
 	 * protected void successiveLinking()
 	 * 
