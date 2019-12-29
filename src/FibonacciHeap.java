@@ -172,6 +172,9 @@ public class FibonacciHeap {
 				if (node.getRank() > newMaxRank) {
 					newMaxRank = node.getRank();
 				}
+			} else {
+				throw new RuntimeException(
+						"We shouldn't get here, successive link reached a non-root");
 			}
 			node = node.getNext();
 		}
