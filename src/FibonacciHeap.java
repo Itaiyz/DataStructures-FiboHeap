@@ -172,8 +172,6 @@ public class FibonacciHeap {
 		HeapNode startNode = this.findMin();
 		HeapNode node = startNode;
 
-		int newMaxRank = 0;
-
 		do {
 			// Only if node hasn't been linked to someone already
 			if (node.getParent() == null) {
@@ -190,8 +188,8 @@ public class FibonacciHeap {
 				}
 
 				// Update maxRank
-				if (node.getRank() > newMaxRank) {
-					newMaxRank = node.getRank();
+				if (node.getRank() > maxRank) {
+					this.maxRank = node.getRank();
 				}
 			} else {
 				throw new RuntimeException(
@@ -203,7 +201,6 @@ public class FibonacciHeap {
 		// can check if we finished iterating with
 		while (node != startNode);
 
-		this.maxRank = newMaxRank;
 		// Update min
 		this.bruteFindMin();
 
