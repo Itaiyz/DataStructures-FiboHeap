@@ -70,6 +70,7 @@ public class Test {
         //numbers=Arrays.asList(1, 3, 2, 0, 4);
         //numbers=Arrays.asList(1, 0);
         numbers=Arrays.asList(1);
+        n=numbers.size();
         
         for (int i = 0; i < n; i++) {
             fibonacciHeap.insert(numbers.get(i));
