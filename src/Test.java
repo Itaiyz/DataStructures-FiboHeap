@@ -17,7 +17,9 @@ public class Test {
         grade = 80.0;
         testScore = grade / 29;
 
-        try {test0(20);} catch (Exception e){bugFound("test0");}
+        try {test0(20);} catch (Exception e){
+        	
+        	bugFound("test0");}
         try {test1();} catch (Exception e){bugFound("test1");}
         try {test2();} catch (Exception e){bugFound("test2");}
         try {test3();} catch (Exception e){bugFound("test3");}
@@ -71,9 +73,7 @@ public class Test {
         }
 
         for (int i = 0; i < n; i++) {
-        	if(i==0) {
-        		System.out.println("problem after deleting this one");
-        	}
+
             if (fibonacciHeap.findMin().getKey() != i) {
                 bugFound(test);
                 return;
