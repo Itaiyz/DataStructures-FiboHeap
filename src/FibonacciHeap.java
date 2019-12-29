@@ -156,10 +156,10 @@ public class FibonacciHeap {
 				} else {
 					this.link(node, arr[node.getRank()]);
 					if (node.getParent() == null) {
-						arr[node.getRank()-1] = null;
+						arr[node.getRank() - 1] = null;
 					} else {
-						node=node.getParent();
-						arr[node.getRank()-1] = null;
+						node = node.getParent();
+						arr[node.getRank() - 1] = null;
 					}
 				}
 
