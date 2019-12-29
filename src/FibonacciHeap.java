@@ -93,6 +93,7 @@ public class FibonacciHeap {
 	 * Delete the node containing the minimum key.
 	 * 
 	 * Calls successiveLinking which is O(n)
+	 * Calls bruteFindMin which is O(n)
 	 * 
 	 * Complexity: O(n)
 	 *
@@ -107,13 +108,13 @@ public class FibonacciHeap {
 
 			FibonacciHeap heap2 = new FibonacciHeap();
 
-			// Find minimum child, removing parent pointers
+			// Find minimum child
 			heap2.min = minNode.getChild();
-			HeapNode node = minNode.getChild();
+			heap2.bruteFindMin();
+			// Removing parent pointers, unmarking nodes
+			HeapNode startNode = heap2.findMin();
+			HeapNode node = startNode;
 			do {
-				if (heap2.findMin().getKey() > node.getKey()) {
-					heap2.min = node;
-				}
 				node.setParent(null);
 				// If node is marked, it becomes a root and so unmarked
 				if (node.isMark()) {
