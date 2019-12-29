@@ -18,6 +18,10 @@ public class FibonacciHeap {
 	protected int numMarked = 0;
 	protected static int totalLinks=0;
 	protected static int totalCuts=0;
+
+	// For deleting an arbitrary key
+	protected static final int NEG_INFTY = Integer.MIN_VALUE;
+
 	/**
 	 * public boolean isEmpty()
 	 *
@@ -159,9 +163,13 @@ public class FibonacciHeap {
 	 *
 	 * Deletes the node x from the heap.
 	 *
+	 * Decreases key to negative infinity and then deletes minimum
+	 *
+	 * Complexity: O(log n)
 	 */
 	public void delete(HeapNode x) {
-		return; // should be replaced by student code
+		decreaseKey(x, x.getKey() - NEG_INFTY);
+		deleteMin();
 	}
 
 	/**
