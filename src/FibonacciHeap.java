@@ -39,55 +39,27 @@ public class FibonacciHeap {
 	}
 
 	/**
-	 * protected HeapNode insertNode(HeapNode newNode)
-	 *
-	 * Recieves a node (of type HeapNode) and inserts it into the heap.
-	 * 
-	 * Calls findMin which is O(1)
-	 * 
-	 * Complexity: O(1)
-	 * 
-	 */
-	protected HeapNode insertNode(HeapNode newNode) {
-
-		if (this.isEmpty()) {
-			this.min = newNode;
-		} else {
-			HeapNode newNodePrev = newNode.getPrev();
-			
-			newNodePrev.setNext(this.findMin());
-			newNode.setPrev(this.findMin().getPrev());
-
-			this.findMin().getPrev().setNext(newNode);
-			this.findMin().setPrev(newNodePrev);
-			// Test this last part when inserting into a heap with one element
-		}
-
-		// Replace min if needed
-		if (this.findMin().getKey() > newNode.getKey()) {
-			this.min = newNode;
-		}
-
-		this.size += 1;
-		return newNode;
-	}
-
-	/**
 	 * public HeapNode insert(int key)
 	 *
 	 * Creates a node (of type HeapNode) which contains the given key, and
 	 * inserts it into the heap.
 	 * 
-	 * Calls insertNode which is O(1)
+	 * Calls meld which is O(1)
 	 * 
 	 * Complexity: O(1)
 	 * 
 	 */
 	public HeapNode insert(int key) {
 
+		FibonacciHeap heap2 = new FibonacciHeap();
 		HeapNode newNode = new HeapNode(key);
+		heap2.min = newNode;
+		heap2.size = 1;
+		heap2.numTrees = 1;
 
-		return insertNode(newNode);
+		this.meld(heap2);
+
+		return newNode;
 	}
 
 	/**
