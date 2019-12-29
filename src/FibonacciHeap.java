@@ -107,10 +107,56 @@ public class FibonacciHeap {
 			minNode.getPrev().setNext(minNode.getNext());
 			minNode.getNext().setPrev(minNode.getPrev());
 			
+	/**
+	 * protected void link(HeapNode node, HeapNode heapNode)
+	 * 
+	 * A link operation is the operation which gets as input two trees of the
+	 * same rank, and generates a tree of rank bigger by one, by hanging the
+	 * tree which has larger value in its root on the tree which has smaller
+	 * value in its root.
+	 * 
+	 * Complexity: O(1)
+	 * 
+	 */
+	protected void link(HeapNode node1, HeapNode node2) {
 
+		this.numTrees -= 1;
+
+		if (node1.getRank() == this.maxRank) {
+			this.maxRank += 1;
 		}
-		//Add case where minNode has no children
 
+		HeapNode small;
+		HeapNode large;
+
+		if (node1.getKey() < node2.getKey()) {
+			small = node1;
+			large = node2;
+		} else {
+			small = node2;
+			large = node1;
+		}
+
+		large.setParent(small);
+		// Removing large from root list
+		large.getPrev().setNext(large.getNext());
+		large.getNext().setPrev(large.getPrev());
+
+		large.setNext(large);
+		large.setPrev(large);
+
+		// Inserting large into small's children
+		if (small.getChild() == null) {
+			small.setChild(large);
+		} else {
+			large.setPrev(small.getChild());
+			large.setNext(small.getChild().getNext());
+			small.getChild().getNext().setPrev(large);
+			small.getChild().setNext(large);
+		}
+		small.setRank(small.getRank() + 1);
+
+		return;
 	}
 
 	/**
