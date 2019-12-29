@@ -165,6 +165,12 @@ public class FibonacciHeap {
 	public class HeapNode {
 
 		public int key;
+		protected int rank = 0;
+		protected boolean mark = false;
+		protected HeapNode child = null;
+		protected HeapNode next = this;
+		protected HeapNode prev = this;
+		protected HeapNode parent = null;
 
 		public HeapNode(int key) {
 			this.key = key;
@@ -172,6 +178,58 @@ public class FibonacciHeap {
 
 		public int getKey() {
 			return this.key;
+		}
+
+		protected void setKey(int key) {
+			this.key = key;
+		}
+
+		protected int getRank() {
+			return rank;
+		}
+
+		protected void setRank(int rank) {
+			this.rank = rank;
+		}
+
+		protected boolean isMark() {
+			return mark;
+		}
+
+		protected void setMark(boolean mark) {
+			this.mark = mark;
+		}
+
+		protected HeapNode getChild() {
+			return child;
+		}
+
+		protected void setChild(HeapNode child) {
+			this.child = child;
+		}
+
+		protected HeapNode getNext() {
+			return next;
+		}
+
+		protected void setNext(HeapNode next) {
+			this.next = next;
+		}
+
+		protected HeapNode getPrev() {
+			return prev;
+		}
+
+		protected void setPrev(HeapNode prev) {
+			this.prev = prev;
+		}
+
+		protected HeapNode getParent() {
+			return parent;
+		}
+
+		protected void setParent(HeapNode parent) {
+			this.parent = parent;
 		}
 
 	}
