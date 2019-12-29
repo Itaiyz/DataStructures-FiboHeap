@@ -17,7 +17,7 @@ public class Test {
         grade = 80.0;
         testScore = grade / 29;
 
-        try {test0(1);} catch (Exception e){
+        try {test0(99999);} catch (Exception e){
         	
         	bugFound("test0");}
         try {test1();} catch (Exception e){bugFound("test1");}
@@ -66,10 +66,10 @@ public class Test {
 
         //DEBUG
         //numbers=Arrays.asList(7, 8, 18, 10, 5, 1, 4, 14, 16, 0, 6, 9, 19, 17, 13, 3, 12, 15, 11, 2);
-        //numbers=Arrays.asList(8, 7, 4, 0, 9, 2, 3, 1, 5, 6);
+        numbers=Arrays.asList(8, 7, 4, 0, 9, 2, 3, 1, 5, 6);
         //numbers=Arrays.asList(1, 3, 2, 0, 4);
         //numbers=Arrays.asList(1, 0);
-        numbers=Arrays.asList(1);
+        //numbers=Arrays.asList(0);
         n=numbers.size();
         
         for (int i = 0; i < n; i++) {
