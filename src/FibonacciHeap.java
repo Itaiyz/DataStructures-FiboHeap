@@ -178,6 +178,9 @@ public class FibonacciHeap {
 		// minNode won't be linked under anyone because it is minimal so we
 		// can check if we finished iterating with
 		while (node != startNode);
+
+		this.maxRank = newMaxRank;
+
 		return;
 	}
 
