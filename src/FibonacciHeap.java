@@ -116,13 +116,13 @@ public class FibonacciHeap {
 			HeapNode node = startNode;
 			do {
 				node.setParent(null);
-				// If node is marked, it becomes a root and so unmarked
+				// If node was marked, it became a root and so is now unmarked
 				if (node.isMark()) {
 					heap2.numMarked -= 1;
 					node.setMark(false);
 				}
 				node = node.getNext();
-			} while (node != minNode.getChild());
+			} while (node != startNode);
 
 			// Adding minNode's children but removing minNode
 			heap2.numTrees = minNode.getRank() - 1;
