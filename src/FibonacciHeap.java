@@ -19,9 +19,13 @@ public class FibonacciHeap {
 	 * 
 	 * The method returns true if and only if the heap is empty.
 	 * 
+	 * Calls size() which is O(1)
+	 * 
+	 * Complexity: O(1)
+	 * 
 	 */
 	public boolean isEmpty() {
-		return false; // should be replaced by student code
+		return this.size() == 0;
 	}
 
 	/**
