@@ -1,7 +1,9 @@
 //FibonacciHeap Tester
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 public class Test {
 
@@ -15,7 +17,7 @@ public class Test {
         grade = 80.0;
         testScore = grade / 29;
 
-        try {test0();} catch (Exception e){bugFound("test0");}
+        try {test0(20);} catch (Exception e){bugFound("test0");}
         try {test1();} catch (Exception e){bugFound("test1");}
         try {test2();} catch (Exception e){bugFound("test2");}
         try {test3();} catch (Exception e){bugFound("test3");}
@@ -48,23 +50,30 @@ public class Test {
         System.out.println(grade);
     }
 
-    static void test0() {
+    static void test0(int n) {
         String test = "test0";
         fibonacciHeap = new FibonacciHeap();
 
-        ArrayList<Integer> numbers = new ArrayList<>();
+        List<Integer> numbers = new ArrayList<Integer>();
 
-        for (int i = 0; i < 99999; i++) {
+        for (int i = 0; i < n; i++) {
             numbers.add(i);
         }
 
         Collections.shuffle(numbers);
 
-        for (int i = 0; i < 99999; i++) {
+        //DEBUG
+        numbers=Arrays.asList(7, 8, 18, 10, 5, 1, 4, 14, 16, 0, 6, 9, 19, 17, 13, 3, 12, 15, 11, 2);
+        
+        
+        for (int i = 0; i < n; i++) {
             fibonacciHeap.insert(numbers.get(i));
         }
 
-        for (int i = 0; i < 99999; i++) {
+        for (int i = 0; i < n; i++) {
+        	if(i==0) {
+        		System.out.println("problem after deleting this one");
+        	}
             if (fibonacciHeap.findMin().getKey() != i) {
                 bugFound(test);
                 return;
