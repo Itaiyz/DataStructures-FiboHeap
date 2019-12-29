@@ -189,11 +189,6 @@ public class FibonacciHeap {
 					}
 				}
 
-				// Update minimum
-				if (this.findMin().getKey() > node.getKey()) {
-					this.min = node;
-				}
-
 				// Update maxRank
 				if (node.getRank() > newMaxRank) {
 					newMaxRank = node.getRank();
@@ -204,11 +199,13 @@ public class FibonacciHeap {
 			}
 			node = node.getNext();
 		}
-		// minNode won't be linked under anyone because it is minimal so we
+		// min won't be linked under anyone because it is minimal so we
 		// can check if we finished iterating with
 		while (node != startNode);
 
 		this.maxRank = newMaxRank;
+		// Update min
+		this.bruteFindMin();
 
 		return;
 	}
