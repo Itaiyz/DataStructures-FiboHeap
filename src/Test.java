@@ -86,7 +86,7 @@ public class Test {
             heap.deleteMin();
             fibonacciHeap.deleteMin();
         }
-        if (!fibonacciHeap.empty())
+        if (!fibonacciHeap.isEmpty())
             bugFound(test);
     }
 
@@ -103,7 +103,7 @@ public class Test {
             heap.deleteMin();
             fibonacciHeap.deleteMin();
         }
-        if (!fibonacciHeap.empty())
+        if (!fibonacciHeap.isEmpty())
             bugFound(test);
     }
 
@@ -122,7 +122,7 @@ public class Test {
             heap.deleteMin();
             fibonacciHeap.deleteMin();
         }
-        if (!fibonacciHeap.empty())
+        if (!fibonacciHeap.isEmpty())
             bugFound(test);
     }
 
@@ -155,7 +155,7 @@ public class Test {
             heap.deleteMin();
             fibonacciHeap.deleteMin();
         }
-        if (!fibonacciHeap.empty())
+        if (!fibonacciHeap.isEmpty())
             bugFound(test);
     }
 
@@ -175,7 +175,7 @@ public class Test {
                 fibonacciHeap.deleteMin();
             }
         }
-        if (!fibonacciHeap.empty())
+        if (!fibonacciHeap.isEmpty())
             bugFound(test);
     }
 
@@ -200,7 +200,7 @@ public class Test {
                 fibonacciHeap.deleteMin();
             }
         }
-        if (!fibonacciHeap.empty())
+        if (!fibonacciHeap.isEmpty())
             bugFound(test);
     }
 
@@ -235,7 +235,7 @@ public class Test {
             heap.deleteMin();
             fibonacciHeap.deleteMin();
         }
-        if (!fibonacciHeap.empty())
+        if (!fibonacciHeap.isEmpty())
             bugFound(test);
     }
 
@@ -270,7 +270,7 @@ public class Test {
             heap.deleteMin();
             fibonacciHeap.deleteMin();
         }
-        if (!fibonacciHeap.empty())
+        if (!fibonacciHeap.isEmpty())
             bugFound(test);
     }
 
@@ -305,7 +305,7 @@ public class Test {
             heap.deleteMin();
             fibonacciHeap.deleteMin();
         }
-        if (!fibonacciHeap.empty())
+        if (!fibonacciHeap.isEmpty())
             bugFound(test);
     }
 
@@ -343,7 +343,7 @@ public class Test {
             heap.deleteMin();
             fibonacciHeap.deleteMin();
         }
-        if (!fibonacciHeap.empty())
+        if (!fibonacciHeap.isEmpty())
             bugFound(test);
     }
 
@@ -368,7 +368,7 @@ public class Test {
                 }
             fibonacciHeap.deleteMin();
         }
-        if (!fibonacciHeap.empty())
+        if (!fibonacciHeap.isEmpty())
             bugFound(test);
     }
 
@@ -396,7 +396,7 @@ public class Test {
             }
             fibonacciHeap.deleteMin();
         }
-        if (!fibonacciHeap.empty())
+        if (!fibonacciHeap.isEmpty())
             bugFound(test);
     }
 
@@ -420,7 +420,7 @@ public class Test {
         }
         fibonacciHeap.deleteMin();
 
-        if (!fibonacciHeap.empty())
+        if (!fibonacciHeap.isEmpty())
             bugFound(test);
     }
 
@@ -453,7 +453,7 @@ public class Test {
             fibonacciHeap.deleteMin();
         }
 
-        if (!fibonacciHeap.empty())
+        if (!fibonacciHeap.isEmpty())
             bugFound(test);
     }
 
@@ -485,7 +485,7 @@ public class Test {
             }
             fibonacciHeap.deleteMin();
         }
-        if (!fibonacciHeap.empty())
+        if (!fibonacciHeap.isEmpty())
             bugFound(test);
     }
 
