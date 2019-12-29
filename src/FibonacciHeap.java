@@ -22,6 +22,8 @@ public class FibonacciHeap {
 
 	// For deleting an arbitrary key
 	protected static final int NEG_INFTY = Integer.MIN_VALUE;
+	//For brute finding minimum
+	protected static final int POS_INFTY = Integer.MAX_VALUE;
 
 	/**
 	 * public boolean isEmpty()
@@ -72,19 +74,20 @@ public class FibonacciHeap {
 	 * 
 	 */
 	protected HeapNode bruteFindMin() {
-		int currentMinKey = NEG_INFTY;
+		int currentMinKey = POS_INFTY;
 		HeapNode currentMin = this.findMin();
 		HeapNode startNode = this.findMin();
 		HeapNode node = startNode;
 		do {
 			if (node.getKey() < currentMinKey) {
 				currentMinKey = node.getKey();
-				currentMin = node;
+				this.min = node;
 			}
 			node = node.getNext();
 		} while (node != startNode);
 
-		return currentMin;
+		
+		return this.min;
 	}
 
 	/**
