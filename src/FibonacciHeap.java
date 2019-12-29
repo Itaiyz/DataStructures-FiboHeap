@@ -64,6 +64,30 @@ public class FibonacciHeap {
 	}
 
 	/**
+	 * protected HeapNode bruteFindMin()
+	 * 
+	 * Sequentially scans all roots in heap and looks for minimum among them
+	 * 
+	 * Complexity: O(n)
+	 * 
+	 */
+	protected HeapNode bruteFindMin() {
+		int currentMinKey = NEG_INFTY;
+		HeapNode currentMin = this.findMin();
+		HeapNode startNode = this.findMin();
+		HeapNode node = startNode;
+		do {
+			if (node.getKey() < currentMinKey) {
+				currentMinKey = node.getKey();
+				currentMin = node;
+			}
+			node = node.getNext();
+		} while (node != startNode);
+
+		return currentMin;
+	}
+
+	/**
 	 * public void deleteMin()
 	 *
 	 * Delete the node containing the minimum key.
