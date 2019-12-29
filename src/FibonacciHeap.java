@@ -137,8 +137,14 @@ public class FibonacciHeap {
 	 */
 	protected void successiveLinking() {
 		HeapNode[] arr = new HeapNode[maxRank + 1];
-		HeapNode minNode = this.findMin();
-		HeapNode node = minNode;
+		// We just removed the minimum, but haven't nessecarily updated the
+		// pointer yet, so we start our update from the next node and
+		// arbitrarily set the minimum as the next node, the actual minimum will
+		// be found during the run of this function
+		// (Possible problem might remain after deleting minimum with child?)
+		this.min = this.findMin().getNext();
+		HeapNode startNode = this.findMin();
+		HeapNode node = startNode;
 
 		do {
 			// Only if node hasn't been linked to someone already
@@ -164,7 +170,8 @@ public class FibonacciHeap {
 		}
 		// minNode won't be linked under anyone because it is minimal so we
 		// can check if we finished iterating with
-		while (node != minNode);
+		while (node != startNode);
+		return;
 	}
 
 	/**
