@@ -13,6 +13,7 @@
 public class FibonacciHeap {
 
 	protected int size = 0;
+	protected HeapNode min = null;
 	/**
 	 * public boolean isEmpty()
 	 *
@@ -27,6 +28,40 @@ public class FibonacciHeap {
 	 */
 	public boolean isEmpty() {
 		return this.size() == 0;
+	}
+
+	/**
+	 * protected HeapNode insertNode(HeapNode newNode)
+	 *
+	 * Recieves a node (of type HeapNode) and inserts it into the heap.
+	 * 
+	 * Calls findMin which is O(1)
+	 * 
+	 * Complexity: O(1)
+	 * 
+	 */
+	protected HeapNode insertNode(HeapNode newNode) {
+
+		if (this.isEmpty()) {
+			this.min = newNode;
+		} else {
+			HeapNode newNodePrev = newNode.getPrev();
+			
+			newNodePrev.setNext(this.findMin());
+			newNode.setPrev(this.findMin().getPrev());
+
+			this.findMin().getPrev().setNext(newNode);
+			this.findMin().setPrev(newNodePrev);
+			// Test this last part when inserting into a heap with one element
+		}
+
+		// Replace min if needed
+		if (this.findMin().getKey() > newNode.getKey()) {
+			this.min = newNode;
+		}
+
+		this.size += 1;
+		return newNode;
 	}
 
 	/**
