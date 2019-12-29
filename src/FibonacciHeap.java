@@ -97,10 +97,12 @@ public class FibonacciHeap {
 	 * public HeapNode findMin()
 	 *
 	 * Return the node of the heap whose key is minimal.
+	 * 
+	 * Complexity: O(1)
 	 *
 	 */
 	public HeapNode findMin() {
-		return new HeapNode(0);// should be replaced by student code
+		return this.min;
 	}
 
 	/**
