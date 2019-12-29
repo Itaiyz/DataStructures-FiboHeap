@@ -14,6 +14,8 @@ public class FibonacciHeap {
 
 	protected int size = 0;
 	protected HeapNode min = null;
+	protected int numTrees = 0;
+	protected int numMarked = 0;
 	/**
 	 * public boolean isEmpty()
 	 *
@@ -177,9 +179,12 @@ public class FibonacciHeap {
 	 * This function returns the current potential of the heap, which is:
 	 * Potential = #trees + 2*#marked The potential equals to the number of
 	 * trees in the heap plus twice the number of marked nodes in the heap.
+	 * 
+	 * Complexity: O(1)
+	 * 
 	 */
 	public int potential() {
-		return 0; // should be replaced by student code
+		return numTrees + 2 * numMarked;
 	}
 
 	/**
