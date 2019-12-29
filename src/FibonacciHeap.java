@@ -18,6 +18,7 @@ public class FibonacciHeap {
 	protected int numMarked = 0;
 	protected static int totalLinks = 0;
 	protected static int totalCuts = 0;
+	protected int maxRank = 0;
 
 	// For deleting an arbitrary key
 	protected static final int NEG_INFTY = Integer.MIN_VALUE;
@@ -143,6 +144,7 @@ public class FibonacciHeap {
 			this.size = heap2.size();
 			this.numTrees = heap2.numTrees;
 			this.numMarked = heap2.numMarked;
+			this.maxRank = heap2.maxRank;
 		} else {
 			HeapNode newNode = heap2.findMin();
 			HeapNode newNodePrev = newNode.getPrev();
@@ -161,6 +163,7 @@ public class FibonacciHeap {
 			this.size += heap2.size();
 			this.numTrees += heap2.numTrees;
 			this.numMarked += heap2.numMarked;
+			this.maxRank = Math.max(this.maxRank, heap2.maxRank);
 		}
 
 		return;
@@ -188,8 +191,7 @@ public class FibonacciHeap {
 	 * 
 	 */
 	public int[] countersRep() {
-		int[] arr = new int[2
-				* (int) (Math.log(this.size()) / Math.log(2) + 1)];
+		int[] arr = new int[maxRank + 1];
 
 		HeapNode node = this.findMin();
 
