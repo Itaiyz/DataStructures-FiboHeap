@@ -108,6 +108,41 @@ public class FibonacciHeap {
 			minNode.getNext().setPrev(minNode.getPrev());
 			
 	/**
+	 * protected void successiveLinking()
+	 * 
+	 * Performs one-pass successive linking as described on slides 53 - 56 of
+	 * https://www.cs.tau.ac.il/~schechik/Data-Structures-2020/Binomial-Fibonacci-heaps.pptx
+	 * 
+	 * Also finds new minimum.
+	 * 
+	 * Complexity: O(n)
+	 */
+	protected void successiveLinking() {
+		HeapNode[] arr = new HeapNode[maxRank + 1];
+		HeapNode minNode = this.findMin();
+		HeapNode node = minNode;
+
+		do {
+			// Only if node hasn't been linked to someone already
+			if (node.getParent() == null) {
+				if (arr[node.getRank()] == null) {
+					arr[node.getRank()] = node;
+				} else {
+					this.link(node, arr[node.getRank()]);
+					arr[node.getRank()] = null;
+				}
+				if (this.findMin().getKey() > node.getKey()) {
+					this.min = node;
+				}
+			}
+			node = node.getNext();
+		}
+		// minNode won't be linked under anyone because it is minimal so we
+		// can check if we finished iterating with
+		while (node != minNode);
+	}
+
+	/**
 	 * protected void link(HeapNode node, HeapNode heapNode)
 	 * 
 	 * A link operation is the operation which gets as input two trees of the
