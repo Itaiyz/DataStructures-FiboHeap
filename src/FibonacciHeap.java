@@ -16,6 +16,8 @@ public class FibonacciHeap {
 	protected HeapNode min = null;
 	protected int numTrees = 0;
 	protected int numMarked = 0;
+	protected static int totalLinks=0;
+	protected static int totalCuts=0;
 	/**
 	 * public boolean isEmpty()
 	 *
@@ -195,9 +197,12 @@ public class FibonacciHeap {
 	 * which gets as input two trees of the same rank, and generates a tree of
 	 * rank bigger by one, by hanging the tree which has larger value in its
 	 * root on the tree which has smaller value in its root.
+	 * 
+	 * Complexity: O(1)
+	 * 
 	 */
 	public static int totalLinks() {
-		return 0; // should be replaced by student code
+		return totalLinks;
 	}
 
 	/**
@@ -207,9 +212,12 @@ public class FibonacciHeap {
 	 * during the run-time of the program. A cut operation is the operation
 	 * which diconnects a subtree from its parent (during decreaseKey/delete
 	 * methods).
+	 * 
+	 * Complexity: O(1)
+	 * 
 	 */
 	public static int totalCuts() {
-		return 0; // should be replaced by student code
+		return totalCuts();
 	}
 
 	/**
