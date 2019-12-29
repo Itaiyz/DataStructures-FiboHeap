@@ -162,12 +162,13 @@ public class FibonacciHeap {
 	 */
 	protected void successiveLinking() {
 		HeapNode[] arr = new HeapNode[maxRank + 1];
-		// We just removed the minimum, but haven't nessecarily updated the
-		// pointer yet, so we start our update from the next node and
-		// arbitrarily set the minimum as the next node, the actual minimum will
-		// be found during the run of this function
-		// (Possible problem might remain after deleting minimum with child?)
+
+		// Current min shouldnt be part of root list so we first go to its next
+		// sibling
 		this.min = this.findMin().getNext();
+		// We already pay for iterating through all trees, no problem
+		// (asymptotically) to brute find min right now
+		this.bruteFindMin();
 		HeapNode startNode = this.findMin();
 		HeapNode node = startNode;
 
