@@ -12,6 +12,7 @@
  */
 public class FibonacciHeap {
 
+	protected int size = 0;
 	/**
 	 * public boolean isEmpty()
 	 *
@@ -74,9 +75,11 @@ public class FibonacciHeap {
 	 *
 	 * Return the number of elements in the heap
 	 * 
+	 * Complexity: O(1)
+	 * 
 	 */
 	public int size() {
-		return 0; // should be replaced by student code
+		return this.size;
 	}
 
 	/**
