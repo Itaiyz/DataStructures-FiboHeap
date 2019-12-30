@@ -19,10 +19,9 @@ public class FibonacciHeap {
 	protected static int totalLinks = 0;
 	protected static int totalCuts = 0;
 	protected int maxRank = 0;
-
 	// For deleting an arbitrary key
 	protected static final int NEG_INFTY = Integer.MIN_VALUE;
-	//For brute finding minimum
+	// For brute finding minimum
 	protected static final int POS_INFTY = Integer.MAX_VALUE;
 
 	/**
@@ -86,7 +85,6 @@ public class FibonacciHeap {
 			node = node.getNext();
 		} while (node != startNode);
 
-		
 		return this.min;
 	}
 
@@ -96,6 +94,7 @@ public class FibonacciHeap {
 	 * Delete the node containing the minimum key.
 	 * 
 	 * Calls successiveLinking which is O(n)
+	 * 
 	 * Calls bruteFindMin which is O(n)
 	 * 
 	 * Complexity: O(n)
@@ -136,7 +135,7 @@ public class FibonacciHeap {
 			// Removing minNode from root list
 			minNode.getPrev().setNext(minNode.getNext());
 			minNode.getNext().setPrev(minNode.getPrev());
-			
+
 			this.successiveLinking();
 		} else {
 			this.size -= 1;
