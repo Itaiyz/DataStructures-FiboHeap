@@ -48,21 +48,36 @@ public class FibonacciHeap {
 	 * Creates a node (of type HeapNode) which contains the given key, and
 	 * inserts it into the heap.
 	 * 
-	 * Calls meld which is O(1)
+	 * Lazy insertion - inserting the node as a rank 0 node, to be fixed later
+	 * in Delete min.
 	 * 
 	 * Complexity: O(1)
 	 * 
 	 */
 	public HeapNode insert(int key) {
 
-		FibonacciHeap heap2 = new FibonacciHeap();
+		// Not to be implemented using meld, according to forum
+		this.size += 1;
+		this.numTrees += 1;
+
 		HeapNode newNode = new HeapNode(key);
-		heap2.min = newNode;
-		heap2.size = 1;
-		heap2.numTrees = 1;
+		if (this.first == null) {
+			this.min = this.first = this.last = newNode;
+			return newNode;
+		}
+		HeapNode firstNode = this.first;
+		HeapNode lastNode = this.last;
+		newNode.setNext(firstNode);
+		firstNode.setPrev(newNode);
+		lastNode.setNext(newNode);
+		newNode.setPrev(lastNode);
 
-		this.meld(heap2);
+		// Update minimum
+		if (this.min.getKey() > key) {
+			this.min = newNode;
+		}
 
+		this.first = newNode;
 		return newNode;
 	}
 
