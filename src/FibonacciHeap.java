@@ -301,36 +301,19 @@ public class FibonacciHeap {
 	 */
 	public void meld(FibonacciHeap heap2) {
 
-		if (heap2.isEmpty()) {
-			return;
+		this.last.setNext(heap2.first);
+		this.last = heap2.last;
+		
+		//Update minimum
+		if (this.min.getKey() > heap2.min.getKey()) {
+			this.min = heap2.min;
 		}
-
-		if (this.isEmpty()) {
-			this.min = heap2.findMin();
-			this.size = heap2.size();
-			this.numTrees = heap2.numTrees;
-			this.numMarked = heap2.numMarked;
-			this.maxRank = heap2.maxRank;
-		} else {
-			HeapNode newNode = heap2.findMin();
-			HeapNode newNodePrev = newNode.getPrev();
-
-			newNodePrev.setNext(this.findMin());
-			newNode.setPrev(this.findMin().getPrev());
-
-			this.findMin().getPrev().setNext(newNode);
-			this.findMin().setPrev(newNodePrev);
-			// Test this last part when inserting into a heap with one element
-
-			// Replace min if needed
-			if (this.findMin().getKey() > newNode.getKey()) {
-				this.min = newNode;
-			}
-			this.size += heap2.size();
-			this.numTrees += heap2.numTrees;
-			this.numMarked += heap2.numMarked;
-			this.maxRank = Math.max(this.maxRank, heap2.maxRank);
-		}
+		
+		//Update other fields
+		this.size += heap2.size();
+		this.numTrees += heap2.numTrees;
+		this.numMarked += heap2.numMarked;
+		this.maxRank = Math.max(this.maxRank, heap2.maxRank);
 
 		return;
 	}
