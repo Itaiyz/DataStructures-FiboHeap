@@ -14,6 +14,8 @@ public class FibonacciHeap {
 
 	protected int size = 0;
 	protected HeapNode min = null;
+	protected HeapNode first = null; // Beginning of doubly-linked list
+	protected HeapNode last = null; // End of doubly-linked list
 	protected int numTrees = 0;
 	protected int numMarked = 0;
 	protected static int totalLinks = 0;
