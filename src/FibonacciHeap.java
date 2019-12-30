@@ -303,13 +303,13 @@ public class FibonacciHeap {
 
 		this.last.setNext(heap2.first);
 		this.last = heap2.last;
-		
-		//Update minimum
+
+		// Update minimum
 		if (this.min.getKey() > heap2.min.getKey()) {
 			this.min = heap2.min;
 		}
-		
-		//Update other fields
+
+		// Update other fields
 		this.size += heap2.size();
 		this.numTrees += heap2.numTrees;
 		this.numMarked += heap2.numMarked;
@@ -342,12 +342,12 @@ public class FibonacciHeap {
 	public int[] countersRep() {
 		int[] arr = new int[maxRank + 1];
 
-		HeapNode node = this.findMin();
+		HeapNode node = this.first;
 
 		do {
 			arr[node.getRank()] += 1;
 			node = node.getNext();
-		} while (node != this.findMin());
+		} while (node != this.first);
 
 		return arr;
 	}
