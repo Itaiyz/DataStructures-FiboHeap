@@ -20,11 +20,19 @@ public class FibonacciHeap {
 	protected int numMarked = 0;
 	protected static int totalLinks = 0;
 	protected static int totalCuts = 0;
-	protected int maxRank = 0;
 	// For deleting an arbitrary key
 	protected static final int NEG_INFTY = Integer.MIN_VALUE;
 	// For brute finding minimum
 	protected static final int POS_INFTY = Integer.MAX_VALUE;
+
+	/**
+	 * protected int maxPossibleRank()
+	 * 
+	 * Complexity: O(1)
+	 */
+	protected int maxPossibleRank() {
+		return (int) (Math.ceil(Math.log(size) / Math.log(2)) + 1);
+	}
 
 	/**
 	 * public boolean isEmpty()
@@ -170,7 +178,7 @@ public class FibonacciHeap {
 				// If node was marked, it became a root and so is now unmarked
 				if (node.isMark()) {
 					node.setMark(false);
-					
+
 				}
 				node = node.getNext();
 			} while (node != startNode);
@@ -215,8 +223,7 @@ public class FibonacciHeap {
 	 * Complexity: O(n)
 	 */
 	protected void consolidate() {
-		HeapNode[] arr = new HeapNode[(int) (Math
-				.ceil(Math.log(size) / Math.log(2)) + 2)];
+		HeapNode[] arr = new HeapNode[maxPossibleRank() + 1];
 
 		// We already pay for iterating through all trees, no problem
 		// (asymptotically) to brute find min right now
@@ -239,10 +246,6 @@ public class FibonacciHeap {
 					}
 				}
 
-				// Update maxRank
-				if (node.getRank() > maxRank) {
-					this.maxRank = node.getRank();
-				}
 			} else {
 				throw new RuntimeException(
 						"We shouldn't get here, successive link reached a non-root");
@@ -279,10 +282,6 @@ public class FibonacciHeap {
 		totalLinks += 1;
 
 		this.numTrees -= 1;
-
-		if (node1.getRank() == this.maxRank) {
-			this.maxRank += 1;
-		}
 
 		HeapNode small;
 		HeapNode large;
@@ -347,7 +346,6 @@ public class FibonacciHeap {
 		this.size += heap2.size();
 		this.numTrees += heap2.numTrees;
 		this.numMarked += heap2.numMarked;
-		this.maxRank = Math.max(this.maxRank, heap2.maxRank);
 
 		return;
 	}
@@ -370,11 +368,11 @@ public class FibonacciHeap {
 	 * Return a counters array, where the value of the i-th entry is the number
 	 * of trees of order i in the heap.
 	 * 
-	 * Complexity: O(Max(#Trees,log n))
+	 * Complexity: O(log n)
 	 * 
 	 */
 	public int[] countersRep() {
-		int[] arr = new int[maxRank + 1];
+		int[] arr = new int[maxPossibleRank() + 1];
 
 		HeapNode node = this.first;
 
