@@ -376,6 +376,51 @@ public class FibonacciHeap {
 	public void decreaseKey(HeapNode x, int delta) {
 		return; // should be replaced by student code
 	}
+	/**
+	 * protected void cut(HeapNode x, HeapNode parent)
+	 * 
+	 * Cut x from its parent y
+	 * 
+	 * Complexity: O(1)
+	 * 
+	 */
+	protected void cut(HeapNode x, HeapNode y) {
+		x.setParent(null);
+		x.setMark(false);
+		y.setRank(y.getRank() - 1);
+
+		//Update y.child
+		if (y.getChild() == x) {
+			if (x.getNext() == x) {
+				y.setChild(null);
+			} 
+			else {
+				y.setChild(x.getNext());
+			}
+		}
+		
+		//Remove x from its list
+		x.getPrev().setNext(x.getNext());
+		x.getNext().setParent(x.getPrev());
+		
+		//Add x to root list
+		this.numTrees += 1;
+
+		HeapNode firstNode = this.first;
+		HeapNode lastNode = this.last;
+		x.setNext(firstNode);
+		firstNode.setPrev(x);
+		lastNode.setNext(x);
+		x.setPrev(lastNode);
+
+		// Update minimum
+		if (this.min.getKey() > x.getKey()) {
+			this.min = x;
+		}
+
+		this.first = x;
+		
+	}
 
 	/**
 	 * public int potential()
