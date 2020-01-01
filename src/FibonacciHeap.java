@@ -139,6 +139,7 @@ public class FibonacciHeap {
 				if (node.isMark()) {
 					heap2.numMarked -= 1;
 					node.setMark(false);
+					this.numMarked -= 1;
 				}
 				node = node.getNext();
 			} while (node != startNode);
@@ -406,6 +407,7 @@ public class FibonacciHeap {
 				cascadingCut(y, y.getParent());
 			} else {
 				y.getParent().setMark(true);
+				this.numMarked += 1;
 			}
 		}
 	}
@@ -421,6 +423,7 @@ public class FibonacciHeap {
 	protected void cut(HeapNode x, HeapNode y) {
 		x.setParent(null);
 		x.setMark(false);
+		this.numMarked -= 1;
 		y.setRank(y.getRank() - 1);
 
 		// Update y.child
