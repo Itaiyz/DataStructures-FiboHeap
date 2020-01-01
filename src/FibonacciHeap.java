@@ -305,14 +305,17 @@ public class FibonacciHeap {
 		removeNode(large);
 
 		// Inserting large into small's children
-		if (small.getChild() == null) {
-			small.setChild(large);
+		if (small.getChild() != null) {
+			large.setNext(small.getChild());
+			large.setPrev(small.getChild().getPrev());
+			small.getChild().getPrev().setNext(large);
+			small.getChild().setPrev(large);
+
 		} else {
-			large.setPrev(small.getChild());
-			large.setNext(small.getChild().getNext());
-			small.getChild().getNext().setPrev(large);
-			small.getChild().setNext(large);
+			large.setNext(large);
+			large.setPrev(large);
 		}
+		small.setChild(large);
 		small.setRank(small.getRank() + 1);
 
 		return;
