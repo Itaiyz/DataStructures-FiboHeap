@@ -241,6 +241,8 @@ public class FibonacciHeap {
 	 */
 	protected void link(HeapNode node1, HeapNode node2) {
 
+		totalLinks+=1;
+		
 		this.numTrees -= 1;
 
 		if (node1.getRank() == this.maxRank) {
@@ -421,6 +423,9 @@ public class FibonacciHeap {
 	 * 
 	 */
 	protected void cut(HeapNode x, HeapNode y) {
+		
+		totalCuts+=1;
+		
 		x.setParent(null);
 		x.setMark(false);
 		this.numMarked -= 1;
