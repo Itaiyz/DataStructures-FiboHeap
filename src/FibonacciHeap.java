@@ -335,8 +335,6 @@ public class FibonacciHeap {
 		}
 
 		large.setParent(small);
-		// Removing large from root list
-		removeNode(large);
 
 		// Inserting large into small's children
 		if (small.getChild() != null) {
