@@ -125,19 +125,13 @@ public class FibonacciHeap {
 		HeapNode minNode = this.findMin();
 		if (minNode.getChild() != null) {
 
-			FibonacciHeap heap2 = new FibonacciHeap();
-
-			// Find minimum child
-			heap2.min = minNode.getChild();
-			heap2.bruteFindMin();
 			// Removing parent pointers, unmarking nodes
-			HeapNode startNode = heap2.findMin();
+			HeapNode startNode = minNode.getChild();
 			HeapNode node = startNode;
 			do {
 				node.setParent(null);
 				// If node was marked, it became a root and so is now unmarked
 				if (node.isMark()) {
-					heap2.numMarked -= 1;
 					node.setMark(false);
 					this.numMarked -= 1;
 				}
@@ -145,14 +139,13 @@ public class FibonacciHeap {
 			} while (node != startNode);
 
 			// Adding minNode's children but removing minNode
-			heap2.numTrees = minNode.getRank() - 1;
-			heap2.size = -1;
-
-			this.meld(heap2);
+			this.numTrees += minNode.getRank() - 1;
+			this.size -= 1;
 
 			// Removing minNode from root list
-			minNode.getPrev().setNext(minNode.getNext());
-			minNode.getNext().setPrev(minNode.getPrev());
+			minNode.getPrev().setNext(minNode.getChild());
+			minNode.getNext().setPrev(minNode.getChild().getPrev());
+
 			this.consolidate();
 
 		} else {
@@ -160,6 +153,12 @@ public class FibonacciHeap {
 			this.numTrees -= 1;
 			if (size > 0) {
 				// Removing minNode from root list
+				if (this.first == minNode) {
+					this.first = minNode.getNext();
+				}
+				if (this.last == minNode) {
+					this.last = minNode.getPrev();
+				}
 				minNode.getPrev().setNext(minNode.getNext());
 				minNode.getNext().setPrev(minNode.getPrev());
 
@@ -167,6 +166,8 @@ public class FibonacciHeap {
 
 			} else { // Minimum was only node
 				this.min = null;
+				this.first = null;
+				this.last = null;
 			}
 
 		}
