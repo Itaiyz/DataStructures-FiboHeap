@@ -131,7 +131,7 @@ public class FibonacciHeap {
 	protected HeapNode bruteFindMin() {
 		int currentMinKey = POS_INFTY;
 		HeapNode currentMin = this.findMin();
-		HeapNode startNode = this.findMin();
+		HeapNode startNode = this.first;
 		HeapNode node = startNode;
 		do {
 			if (node.getKey() < currentMinKey) {
