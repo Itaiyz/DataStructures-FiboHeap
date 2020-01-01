@@ -244,19 +244,19 @@ public class FibonacciHeap {
 		do {
 			// Only if node hasn't been linked under someone already
 			if (node.getParent() == null) {
-
-				while (arr[node.getRank()] != null) {
+				currRank = node.getRank();
+				while (arr[node.getRank()] != null
+						&& node != arr[node.getRank()]) {
 					HeapNode returnNode = node.getPrev();
 					currRank = node.getRank();
 					this.link(node, arr[node.getRank()]);
-					if (node.getParent() == null) {
-						arr[currRank] = null;
-					} else {
-						arr[currRank] = null;
+					arr[currRank] = null;
+					currRank += 1;
+					if (node.getParent() != null) {
 						node = returnNode;
 					}
 				}
-				arr[currRank + 1] = node;
+				arr[currRank] = node;
 
 			} else {
 				throw new RuntimeException(
