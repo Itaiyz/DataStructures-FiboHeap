@@ -268,34 +268,19 @@ public class FibonacciHeap {
 		// Update min
 		this.bruteFindMin();
 
-		// Retrieve heap from buckets
-		for (int i = 0; i < arr.length; i++) {
-			if (arr[i] != null) {
-				this.first = arr[i];
-				break;
-			}
-		}
-
-		for (int i = arr.length - 1; i > -1; i--) {
-			if (arr[i] != null) {
-				this.last = arr[i];
-				break;
-			}
-		}
-
-		this.first.setPrev(this.last);
-		this.last.setNext(this.first);
-
-		HeapNode recent = null;
-		for (int i = 0; i < arr.length; i++) {
-			if (arr[i] != null) {
-				if (recent != null) {
-					recent.setNext(arr[i]);
-					arr[i].setPrev(recent);
-				}
-				recent = arr[i];
-			}
-		}
+		/*
+		 * // Retrieve heap from buckets for (int i = 0; i < arr.length; i++) {
+		 * if (arr[i] != null) { this.first = arr[i]; break; } }
+		 * 
+		 * for (int i = arr.length - 1; i > -1; i--) { if (arr[i] != null) {
+		 * this.last = arr[i]; break; } }
+		 * 
+		 * this.first.setPrev(this.last); this.last.setNext(this.first);
+		 * 
+		 * HeapNode recent = null; for (int i = 0; i < arr.length; i++) { if
+		 * (arr[i] != null) { if (recent != null) { recent.setNext(arr[i]);
+		 * arr[i].setPrev(recent); } recent = arr[i]; } }
+		 */
 
 		return;
 	}
