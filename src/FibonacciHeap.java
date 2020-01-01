@@ -189,7 +189,13 @@ public class FibonacciHeap {
 
 			// Removing minNode from root list and replacing with children
 			minNode.getPrev().setNext(minNode.getChild());
+			if (this.first == minNode) {
+				this.first = minNode.getChild();
+			}
 			minNode.getNext().setPrev(minNode.getChild().getPrev());
+			if (this.last == minNode) {
+				this.last = minNode.getChild().getPrev();
+			}
 
 			this.consolidate();
 
