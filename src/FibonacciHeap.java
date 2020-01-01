@@ -376,6 +376,28 @@ public class FibonacciHeap {
 	public void decreaseKey(HeapNode x, int delta) {
 		return; // should be replaced by student code
 	}
+
+	/**
+	 * protected void cascadingCut(HeapNode x, HeapNode parent)
+	 * 
+	 * Performs a cascading cut process starting at x with parent y
+	 * 
+	 * Calls cut which is O(1)
+	 * 
+	 * Complexity: O(n)
+	 * 
+	 */
+	protected void cascadingCut(HeapNode x, HeapNode y) {
+		cut(x, y);
+		if (y.getParent() != null) {
+			if (y.getParent().isMark()) {
+				cascadingCut(y, y.getParent());
+			} else {
+				y.getParent().setMark(true);
+			}
+		}
+	}
+
 	/**
 	 * protected void cut(HeapNode x, HeapNode parent)
 	 * 
