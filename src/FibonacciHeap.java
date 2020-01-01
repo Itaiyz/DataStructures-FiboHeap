@@ -71,13 +71,13 @@ public class FibonacciHeap {
 		firstNode.setPrev(newNode);
 		lastNode.setNext(newNode);
 		newNode.setPrev(lastNode);
+		this.first = newNode;
 
 		// Update minimum
 		if (this.min.getKey() > key) {
 			this.min = newNode;
 		}
 
-		this.first = newNode;
 		return newNode;
 	}
 
@@ -423,21 +423,20 @@ public class FibonacciHeap {
 		x.setMark(false);
 		y.setRank(y.getRank() - 1);
 
-		//Update y.child
+		// Update y.child
 		if (y.getChild() == x) {
 			if (x.getNext() == x) {
 				y.setChild(null);
-			} 
-			else {
+			} else {
 				y.setChild(x.getNext());
 			}
 		}
-		
-		//Remove x from its list
+
+		// Remove x from its list
 		x.getPrev().setNext(x.getNext());
 		x.getNext().setParent(x.getPrev());
-		
-		//Add x to root list
+
+		// Add x to root list
 		this.numTrees += 1;
 
 		HeapNode firstNode = this.first;
@@ -446,14 +445,13 @@ public class FibonacciHeap {
 		firstNode.setPrev(x);
 		lastNode.setNext(x);
 		x.setPrev(lastNode);
+		this.first = x;
 
 		// Update minimum
 		if (this.min.getKey() > x.getKey()) {
 			this.min = x;
 		}
 
-		this.first = x;
-		
 	}
 
 	/**
