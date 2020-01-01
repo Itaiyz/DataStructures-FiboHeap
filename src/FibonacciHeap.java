@@ -237,12 +237,12 @@ public class FibonacciHeap {
 		// We already pay for iterating through all trees, no problem
 		// (asymptotically) to brute find min right now
 		this.bruteFindMin();
-		HeapNode startNode = this.findMin();
-		HeapNode node = startNode;
+
+		HeapNode node = this.first;
 		int currRank = 0;
 
 		do {
-			// Only if node hasn't been linked under someone already
+			// If node hasn't been linked under someone already
 			if (node.getParent() == null) {
 				currRank = node.getRank();
 				while (arr[node.getRank()] != null
@@ -263,10 +263,7 @@ public class FibonacciHeap {
 						"We shouldn't get here, successive link reached a non-root");
 			}
 			node = node.getNext();
-		}
-		// min won't be linked under anyone because it is minimal so we
-		// can check if we finished iterating with
-		while (node != startNode);
+		} while (node != this.last.getNext());
 
 		// Update min
 		this.bruteFindMin();
