@@ -237,49 +237,68 @@ public class FibonacciHeap {
 		// (asymptotically) to brute find min right now
 		this.bruteFindMin();
 
-		HeapNode node = this.first;
+		HeapNode currNode = this.first;
+		HeapNode nextNode;
 		int currRank = 0;
 
-		do {
+		while (numTrees > 0) {
 			// If node hasn't been linked under someone already
-			if (node.getParent() == null) {
-				currRank = node.getRank();
-				while (arr[node.getRank()] != null
-						&& node != arr[node.getRank()]) {
-					HeapNode returnNode = node.getPrev();
-					currRank = node.getRank();
-					this.link(node, arr[node.getRank()]);
+			if (currNode.getParent() == null) {
+				nextNode = currNode.getNext();
+				this.removeNode(currNode);
+				numTrees -= 1;
+				currRank = currNode.getRank();
+				while (arr[currNode.getRank()] != null
+						&& currNode != arr[currNode.getRank()]) {
+					currRank = currNode.getRank();
+					this.link(currNode, arr[currNode.getRank()]);
 					arr[currRank] = null;
 					currRank += 1;
-					if (node.getParent() != null) {
-						node = returnNode;
+					if (currNode.getParent() != null) {
+						currNode = currNode.getParent();
 					}
 				}
-				arr[currRank] = node;
+				arr[currRank] = currNode;
 
 			} else {
 				throw new RuntimeException(
 						"We shouldn't get here, successive link reached a non-root");
 			}
-			node = node.getNext();
-		} while (node != this.last.getNext());
+			currNode = nextNode;
+		}
+
+		// Retrieve heap from buckets
+		for (int i = 0; i < arr.length; i++) {
+			if (arr[i] != null) {
+				this.first = arr[i];
+				break;
+			}
+		}
+
+		for (int i = arr.length - 1; i > -1; i--) {
+			if (arr[i] != null) {
+				this.last = arr[i];
+				break;
+			}
+		}
+
+		this.first.setPrev(this.last);
+		this.last.setNext(this.first);
+
+		HeapNode recent = null;
+		for (int i = 0; i < arr.length; i++) {
+			if (arr[i] != null) {
+				if (recent != null) {
+					recent.setNext(arr[i]);
+					arr[i].setPrev(recent);
+				}
+				recent = arr[i];
+				numTrees += 1;
+			}
+		}
 
 		// Update min
 		this.bruteFindMin();
-
-		/*
-		 * // Retrieve heap from buckets for (int i = 0; i < arr.length; i++) {
-		 * if (arr[i] != null) { this.first = arr[i]; break; } }
-		 * 
-		 * for (int i = arr.length - 1; i > -1; i--) { if (arr[i] != null) {
-		 * this.last = arr[i]; break; } }
-		 * 
-		 * this.first.setPrev(this.last); this.last.setNext(this.first);
-		 * 
-		 * HeapNode recent = null; for (int i = 0; i < arr.length; i++) { if
-		 * (arr[i] != null) { if (recent != null) { recent.setNext(arr[i]);
-		 * arr[i].setPrev(recent); } recent = arr[i]; } }
-		 */
 
 		return;
 	}
@@ -298,12 +317,11 @@ public class FibonacciHeap {
 	protected void link(HeapNode node1, HeapNode node2) {
 
 		if (node1.getRank() != node2.getRank()) {
-			return;
+			throw new RuntimeException(
+					"We shouldn't get here, only link nodes of equal rank");
 		}
 
 		totalLinks += 1;
-
-		this.numTrees -= 1;
 
 		HeapNode small;
 		HeapNode large;
