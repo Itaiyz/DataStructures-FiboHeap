@@ -2,9 +2,7 @@
 //FibonacciHeap Tester
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 
 public class Test {
 
@@ -18,35 +16,91 @@ public class Test {
 		grade = 100.0;
 		testScore = grade / 29;
 
-		/*
-		 * try { test0(9999); } catch (Exception e) { e.printStackTrace();
-		 * bugFound("test0"); }
-		 * 
-		 * 
-		 * try { test1(); } catch (Exception e) { e.printStackTrace();
-		 * bugFound("test1"); }
-		 * 
-		 * try { test2(); } catch (Exception e) { bugFound("test2"); } try {
-		 * test3(); } catch (Exception e) { bugFound("test3"); } try { test4();
-		 * } catch (Exception e) { bugFound("test4"); } try { test5(); } catch
-		 * (Exception e) { bugFound("test5"); } try { test6(); } catch
-		 * (Exception e) { bugFound("test6"); }
-		 * 
-		 * try { test7(); } catch (Exception e) { e.printStackTrace();
-		 * bugFound("test7"); }
-		 * 
-		 * try { test8(); } catch (Exception e) { bugFound("test8"); } try {
-		 * test9(); } catch (Exception e) { bugFound("test9"); } try { test10();
-		 * } catch (Exception e) { bugFound("test10"); } try { test11(); } catch
-		 * (Exception e) { bugFound("test11"); } try { test12(); } catch
-		 * (Exception e) { bugFound("test12"); } try { test13(); } catch
-		 * (Exception e) { bugFound("test13"); }
-		 * 
-		 * try { test14(); } catch (Exception e) { bugFound("test14"); } try {
-		 * test15(); } catch (Exception e) { bugFound("test15"); }
-		 * 
-		 * try { test16(); } catch (Exception e) { bugFound("test16"); }
-		 */
+		try {
+			test0();
+		} catch (Exception e) {
+			bugFound("test0");
+		}
+		try {
+			test1();
+		} catch (Exception e) {
+			bugFound("test1");
+		}
+		try {
+			test2();
+		} catch (Exception e) {
+			bugFound("test2");
+		}
+		try {
+			test3();
+		} catch (Exception e) {
+			bugFound("test3");
+		}
+		try {
+			test4();
+		} catch (Exception e) {
+			bugFound("test4");
+		}
+		try {
+			test5();
+		} catch (Exception e) {
+			bugFound("test5");
+		}
+		try {
+			test6();
+		} catch (Exception e) {
+			bugFound("test6");
+		}
+		try {
+			test7();
+		} catch (Exception e) {
+			bugFound("test7");
+		}
+		try {
+			test8();
+		} catch (Exception e) {
+			bugFound("test8");
+		}
+		try {
+			test9();
+		} catch (Exception e) {
+			bugFound("test9");
+		}
+		try {
+			test10();
+		} catch (Exception e) {
+			bugFound("test10");
+		}
+		try {
+			test11();
+		} catch (Exception e) {
+			bugFound("test11");
+		}
+		try {
+			test12();
+		} catch (Exception e) {
+			bugFound("test12");
+		}
+		try {
+			test13();
+		} catch (Exception e) {
+			bugFound("test13");
+		}
+		try {
+			test14();
+		} catch (Exception e) {
+			bugFound("test14");
+		}
+		try {
+			test15();
+		} catch (Exception e) {
+			bugFound("test15");
+		}
+		try {
+			test16();
+		} catch (Exception e) {
+			bugFound("test16");
+		}
 		try {
 			test17();
 		} catch (Exception e) {
@@ -71,51 +125,64 @@ public class Test {
 			test21();
 		} catch (Exception e) {
 			bugFound("test21");
-		} /*
-			 * try { test22(); } catch (Exception e) { bugFound("test22"); } try
-			 * { test23(); } catch (Exception e) { bugFound("test23"); } try {
-			 * test24(); } catch (Exception e) { bugFound("test24"); } try {
-			 * test25(); } catch (Exception e) { bugFound("test25"); } try {
-			 * test26(); } catch (Exception e) { bugFound("test26"); } try {
-			 * test27(); } catch (Exception e) { bugFound("test27"); } try {
-			 * test28(); } catch (Exception e) { bugFound("test28"); }
-			 */
+		}
+		try {
+			test22();
+		} catch (Exception e) {
+			bugFound("test22");
+		}
+		try {
+			test23();
+		} catch (Exception e) {
+			bugFound("test23");
+		}
+		try {
+			test24();
+		} catch (Exception e) {
+			bugFound("test24");
+		}
+		try {
+			test25();
+		} catch (Exception e) {
+			bugFound("test25");
+		}
+		try {
+			test26();
+		} catch (Exception e) {
+			bugFound("test26");
+		}
+		try {
+			test27();
+		} catch (Exception e) {
+			bugFound("test27");
+		}
+		try {
+			test28();
+		} catch (Exception e) {
+			bugFound("test28");
+		}
 
 		System.out.println(grade);
 	}
 
-	static void test0(int n) {
+	static void test0() {
 		String test = "test0";
 		fibonacciHeap = new FibonacciHeap();
 
-		List<Integer> numbers = new ArrayList<Integer>();
+		ArrayList<Integer> numbers = new ArrayList<>();
 
-		for (int i = 0; i < n; i++) {
+		for (int i = 0; i < 99999; i++) {
 			numbers.add(i);
 		}
 
 		Collections.shuffle(numbers);
 
-		// DEBUG
-		// numbers = Arrays.asList(7, 8, 18, 10, 5, 1, 4, 14, 16, 0, 6, 9, 19,
-		// 17,
-		// 13, 3, 12, 15, 11, 2);
-		// numbers = Arrays.asList(8, 7, 4, 0, 9, 2, 3, 1, 5, 6);
-		// numbers=Arrays.asList(1, 3, 2, 0, 4);
-		// numbers=Arrays.asList(1, 0);
-		// numbers=Arrays.asList(0);
-		n = numbers.size();
-
-		for (int i = 0; i < n; i++) {
+		for (int i = 0; i < 99999; i++) {
 			fibonacciHeap.insert(numbers.get(i));
 		}
 
-		for (int i = 0; i < n; i++) {
-
+		for (int i = 0; i < 99999; i++) {
 			if (fibonacciHeap.findMin().getKey() != i) {
-				System.out
-						.println("Expected minkey " + i + ", instead minkey is "
-								+ fibonacciHeap.findMin().getKey());
 				bugFound(test);
 				return;
 			}
