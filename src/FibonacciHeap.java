@@ -480,10 +480,10 @@ public class FibonacciHeap {
 	protected void cascadingCut(HeapNode x, HeapNode y) {
 		cut(x, y);
 		if (y.getParent() != null) {
-			if (y.getParent().isMark()) {
+			if (y.isMark()) {
 				cascadingCut(y, y.getParent());
 			} else {
-				y.getParent().setMark(true);
+				y.setMark(true);
 			}
 		}
 	}
