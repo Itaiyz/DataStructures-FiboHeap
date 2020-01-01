@@ -131,7 +131,7 @@ public class FibonacciHeap {
 				// If node was marked, it became a root and so is now unmarked
 				if (node.isMark()) {
 					node.setMark(false);
-					this.numMarked -= 1;
+					
 				}
 				node = node.getNext();
 			} while (node != startNode);
@@ -414,7 +414,6 @@ public class FibonacciHeap {
 				cascadingCut(y, y.getParent());
 			} else {
 				y.getParent().setMark(true);
-				this.numMarked += 1;
 			}
 		}
 	}
@@ -433,7 +432,6 @@ public class FibonacciHeap {
 
 		x.setParent(null);
 		x.setMark(false);
-		this.numMarked -= 1;
 		y.setRank(y.getRank() - 1);
 
 		// Update y.child
@@ -565,7 +563,14 @@ public class FibonacciHeap {
 		}
 
 		protected void setMark(boolean mark) {
+			boolean init = this.mark;
 			this.mark = mark;
+			if (init == false && mark == true) {
+				FibonacciHeap.this.numMarked += 1;
+			}
+			if (init == true && mark == false) {
+				FibonacciHeap.this.numMarked -= 1;
+			}
 		}
 
 		protected HeapNode getChild() {
