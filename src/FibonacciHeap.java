@@ -188,15 +188,16 @@ public class FibonacciHeap {
 			this.size -= 1;
 
 			// Removing minNode from root list and replacing with children
+			HeapNode minNodeChildPrev = minNode.getChild().getPrev();
 			minNode.getPrev().setNext(minNode.getChild());
 			minNode.getChild().setPrev(minNode.getPrev());
 			if (this.first == minNode) {
 				this.first = minNode.getChild();
 			}
-			minNode.getNext().setPrev(minNode.getChild().getPrev());
-			minNode.getChild().getPrev().setNext(minNode.getNext());
+			minNode.getNext().setPrev(minNodeChildPrev);
+			minNodeChildPrev.setNext(minNode.getNext());
 			if (this.last == minNode) {
-				this.last = minNode.getChild().getPrev();
+				this.last = minNodeChildPrev;
 			}
 
 			this.consolidate();
