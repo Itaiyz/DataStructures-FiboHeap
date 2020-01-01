@@ -239,21 +239,24 @@ public class FibonacciHeap {
 		this.bruteFindMin();
 		HeapNode startNode = this.findMin();
 		HeapNode node = startNode;
+		int currRank = 0;
 
 		do {
 			// Only if node hasn't been linked under someone already
 			if (node.getParent() == null) {
 
 				while (arr[node.getRank()] != null) {
+					HeapNode returnNode = node.getPrev();
+					currRank = node.getRank();
 					this.link(node, arr[node.getRank()]);
 					if (node.getParent() == null) {
-						arr[node.getRank() - 1] = null;
+						arr[currRank] = null;
 					} else {
-						node = node.getParent();
-						arr[node.getRank() - 1] = null;
+						arr[currRank] = null;
+						node = returnNode;
 					}
 				}
-				arr[node.getRank()] = node;
+				arr[currRank + 1] = node;
 
 			} else {
 				throw new RuntimeException(
