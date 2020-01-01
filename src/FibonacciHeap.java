@@ -430,9 +430,9 @@ public class FibonacciHeap {
 	 * 
 	 */
 	protected void cut(HeapNode x, HeapNode y) {
-		
-		totalCuts+=1;
-		
+
+		totalCuts += 1;
+
 		x.setParent(null);
 		x.setMark(false);
 		this.numMarked -= 1;
