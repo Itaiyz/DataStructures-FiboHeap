@@ -110,9 +110,7 @@ public class FibonacciHeap {
 	 *
 	 * Delete the node containing the minimum key.
 	 * 
-	 * Calls successiveLinking which is O(n)
-	 * 
-	 * Calls bruteFindMin which is O(n)
+	 * Calls consolidate which is O(n)
 	 * 
 	 * Complexity: O(n)
 	 *
@@ -142,7 +140,7 @@ public class FibonacciHeap {
 			this.numTrees += minNode.getRank() - 1;
 			this.size -= 1;
 
-			// Removing minNode from root list
+			// Removing minNode from root list and replacing with children
 			minNode.getPrev().setNext(minNode.getChild());
 			minNode.getNext().setPrev(minNode.getChild().getPrev());
 
