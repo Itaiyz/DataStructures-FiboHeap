@@ -240,9 +240,8 @@ public class FibonacciHeap {
 		do {
 			// Only if node hasn't been linked under someone already
 			if (node.getParent() == null) {
-				if (arr[node.getRank()] == null) {
-					arr[node.getRank()] = node;
-				} else {
+
+				while (arr[node.getRank()] != null) {
 					this.link(node, arr[node.getRank()]);
 					if (node.getParent() == null) {
 						arr[node.getRank() - 1] = null;
@@ -250,8 +249,8 @@ public class FibonacciHeap {
 						node = node.getParent();
 						arr[node.getRank() - 1] = null;
 					}
-					arr[node.getRank()] = node;
 				}
+				arr[node.getRank()] = node;
 
 			} else {
 				throw new RuntimeException(
