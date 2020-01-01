@@ -43,28 +43,22 @@ public class FibonacciHeap {
 	}
 
 	/**
-	 * public HeapNode insert(int key)
-	 *
-	 * Creates a node (of type HeapNode) which contains the given key, and
-	 * inserts it into the heap.
+	 * protected void addRoot(HeapNode newNode)
 	 * 
-	 * Lazy insertion - inserting the node as a rank 0 node, to be fixed later
-	 * in Delete min.
+	 * Adds a given node at the start of the heap
 	 * 
 	 * Complexity: O(1)
 	 * 
 	 */
-	public HeapNode insert(int key) {
+	protected void addRoot(HeapNode newNode) {
 
-		// Not to be implemented using meld, according to forum
-		this.size += 1;
 		this.numTrees += 1;
 
-		HeapNode newNode = new HeapNode(key);
 		if (this.first == null) {
 			this.min = this.first = this.last = newNode;
-			return newNode;
+			return;
 		}
+
 		HeapNode firstNode = this.first;
 		HeapNode lastNode = this.last;
 		newNode.setNext(firstNode);
@@ -74,9 +68,54 @@ public class FibonacciHeap {
 		this.first = newNode;
 
 		// Update minimum
-		if (this.min.getKey() > key) {
+		if (this.min.getKey() > newNode.getKey()) {
 			this.min = newNode;
 		}
+
+		return;
+	}
+
+	/**
+	 * protected void removeNode(HeapNode node)
+	 * 
+	 * Removes given node from list its siblings
+	 * 
+	 * @pre: We are not removing the last node
+	 * 
+	 *       Complexity: O(1)
+	 * 
+	 */
+	protected void removeNode(HeapNode node) {
+		if (this.first == node) {
+			this.first = node.getNext();
+		}
+		if (this.last == node) {
+			this.last = node.getPrev();
+		}
+		node.getPrev().setNext(node.getNext());
+		node.getNext().setPrev(node.getPrev());
+	}
+
+	/**
+	 * public HeapNode insert(int key)
+	 *
+	 * Creates a node (of type HeapNode) which contains the given key, and
+	 * inserts it into the heap.
+	 * 
+	 * Lazy insertion - inserting the node as a rank 0 node, to be fixed later
+	 * in Delete min.
+	 * 
+	 * Calls addRoot which is O(1)
+	 * 
+	 * Complexity: O(1)
+	 * 
+	 */
+	public HeapNode insert(int key) {
+
+		// Not to be implemented using meld, according to forum
+		this.size += 1;
+		HeapNode newNode = new HeapNode(key);
+		this.addRoot(newNode);
 
 		return newNode;
 	}
@@ -151,14 +190,7 @@ public class FibonacciHeap {
 			this.numTrees -= 1;
 			if (size > 0) {
 				// Removing minNode from root list
-				if (this.first == minNode) {
-					this.first = minNode.getNext();
-				}
-				if (this.last == minNode) {
-					this.last = minNode.getPrev();
-				}
-				minNode.getPrev().setNext(minNode.getNext());
-				minNode.getNext().setPrev(minNode.getPrev());
+				removeNode(minNode);
 
 				this.consolidate();
 
@@ -267,11 +299,7 @@ public class FibonacciHeap {
 
 		large.setParent(small);
 		// Removing large from root list
-		large.getPrev().setNext(large.getNext());
-		large.getNext().setPrev(large.getPrev());
-
-		large.setNext(large);
-		large.setPrev(large);
+		removeNode(large);
 
 		// Inserting large into small's children
 		if (small.getChild() == null) {
@@ -444,24 +472,10 @@ public class FibonacciHeap {
 		}
 
 		// Remove x from its list
-		x.getPrev().setNext(x.getNext());
-		x.getNext().setParent(x.getPrev());
+		removeNode(x);
 
 		// Add x to root list
-		this.numTrees += 1;
-
-		HeapNode firstNode = this.first;
-		HeapNode lastNode = this.last;
-		x.setNext(firstNode);
-		firstNode.setPrev(x);
-		lastNode.setNext(x);
-		x.setPrev(lastNode);
-		this.first = x;
-
-		// Update minimum
-		if (this.min.getKey() > x.getKey()) {
-			this.min = x;
-		}
+		addRoot(x);
 
 	}
 
