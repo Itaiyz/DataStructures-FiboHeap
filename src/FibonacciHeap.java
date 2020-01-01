@@ -215,11 +215,9 @@ public class FibonacciHeap {
 	 * Complexity: O(n)
 	 */
 	protected void consolidate() {
-		HeapNode[] arr = new HeapNode[maxRank + 2];
+		HeapNode[] arr = new HeapNode[(int) (Math
+				.ceil(Math.log(size) / Math.log(2)) + 2)];
 
-		// Current min shouldnt be part of root list so we first go to its next
-		// sibling
-		this.min = this.findMin().getNext();
 		// We already pay for iterating through all trees, no problem
 		// (asymptotically) to brute find min right now
 		this.bruteFindMin();
