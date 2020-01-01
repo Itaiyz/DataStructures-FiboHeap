@@ -372,9 +372,21 @@ public class FibonacciHeap {
 	 * The function decreases the key of the node x by delta. The structure of
 	 * the heap should be updated to reflect this chage (for example, the
 	 * cascading cuts procedure should be applied if needed).
+	 * 
+	 * Calls cascadingCut which is O(n)
+	 * 
+	 * Complexity: O(n)
+	 * 
 	 */
 	public void decreaseKey(HeapNode x, int delta) {
-		return; // should be replaced by student code
+
+		x.setKey(x.getKey() - delta);
+
+		if ((x.getParent() != null) && (x.getParent().getKey() >= x.getKey())) {
+			cascadingCut(x, x.getParent());
+		}
+
+		return;
 	}
 
 	/**
