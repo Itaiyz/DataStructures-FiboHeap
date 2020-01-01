@@ -429,6 +429,11 @@ public class FibonacciHeap {
 
 		x.setKey(x.getKey() - delta);
 
+		// Update minimum
+		if (this.min.getKey() > x.getKey()) {
+			this.min = x;
+		}
+
 		if ((x.getParent() != null) && (x.getParent().getKey() >= x.getKey())) {
 			cascadingCut(x, x.getParent());
 		}
