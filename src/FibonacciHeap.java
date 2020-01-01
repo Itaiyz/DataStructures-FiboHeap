@@ -153,8 +153,8 @@ public class FibonacciHeap {
 			// Removing minNode from root list
 			minNode.getPrev().setNext(minNode.getNext());
 			minNode.getNext().setPrev(minNode.getPrev());
+			this.consolidate();
 
-			this.successiveLinking();
 		} else {
 			this.size -= 1;
 			this.numTrees -= 1;
@@ -162,7 +162,9 @@ public class FibonacciHeap {
 				// Removing minNode from root list
 				minNode.getPrev().setNext(minNode.getNext());
 				minNode.getNext().setPrev(minNode.getPrev());
-				this.successiveLinking();
+
+				this.consolidate();
+
 			} else { // Minimum was only node
 				this.min = null;
 			}
@@ -172,17 +174,17 @@ public class FibonacciHeap {
 	}
 
 	/**
-	 * protected void successiveLinking()
+	 * protected void consolidate()
 	 * 
-	 * Performs one-pass successive linking as described on slides 53 - 56 of
+	 * Performs consolidation as described on slides 38 - 48 of
 	 * https://www.cs.tau.ac.il/~schechik/Data-Structures-2020/Binomial-Fibonacci-heaps.pptx
 	 * 
 	 * Also finds new minimum.
 	 * 
 	 * Complexity: O(n)
 	 */
-	protected void successiveLinking() {
-		HeapNode[] arr = new HeapNode[maxRank + 1];
+	protected void consolidate() {
+		HeapNode[] arr = new HeapNode[maxRank + 2];
 
 		// Current min shouldnt be part of root list so we first go to its next
 		// sibling
