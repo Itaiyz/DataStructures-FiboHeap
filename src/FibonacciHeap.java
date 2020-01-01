@@ -537,7 +537,7 @@ public class FibonacciHeap {
 	 * 
 	 */
 	public static int totalCuts() {
-		return totalCuts();
+		return totalCuts;
 	}
 
 	/**
