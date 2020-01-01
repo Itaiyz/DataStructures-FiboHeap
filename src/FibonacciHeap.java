@@ -243,8 +243,12 @@ public class FibonacciHeap {
 	 */
 	protected void link(HeapNode node1, HeapNode node2) {
 
-		totalLinks+=1;
-		
+		if (node1.getRank() != node2.getRank()) {
+			return;
+		}
+
+		totalLinks += 1;
+
 		this.numTrees -= 1;
 
 		if (node1.getRank() == this.maxRank) {
