@@ -570,11 +570,31 @@ public class FibonacciHeap {
 	 * public static int[] kMin(FibonacciHeap H, int k)
 	 *
 	 * This static function returns the k minimal elements in a binomial tree H.
-	 * The function should run in O(k(logk + deg(H)).
+	 * The function should run in O(k(logk + deg(H))).
 	 */
+	@SuppressWarnings("unchecked")
 	public static int[] kMin(FibonacciHeap H, int k) {
-		int[] arr = new int[42];
-		return arr; // should be replaced by student code
+		int[] arr = new int[k];
+		FibonacciHeap minHeap = new FibonacciHeap();
+		minHeap.addRoot(minHeap.new HeapNodeWithInfo<HeapNode>(
+				H.findMin().getKey(), H.findMin()));
+		HeapNode minNode;
+		for (int i = 0; i < k; i++) {
+			minNode = minHeap.findMin();
+			arr[i] = minNode.getKey();
+			HeapNode currChild = ((HeapNodeWithInfo<HeapNode>) minNode)
+					.getInfo().getChild();
+			for (int j = 0; j < ((HeapNodeWithInfo<HeapNode>) minNode).getInfo()
+					.getRank(); j++) {
+				minHeap.addRoot(minHeap.new HeapNodeWithInfo<HeapNode>(
+						currChild.getKey(), currChild));
+				minHeap.size += 1;
+				currChild = currChild.getNext();
+			}
+			minHeap.deleteMin();
+		}
+
+		return arr;
 	}
 
 	/**
@@ -659,6 +679,25 @@ public class FibonacciHeap {
 
 		protected void setParent(HeapNode parent) {
 			this.parent = parent;
+		}
+
+	}
+
+	protected class HeapNodeWithInfo<T> extends HeapNode {
+
+		T info;
+
+		protected HeapNodeWithInfo(int key, T info) {
+			super(key);
+			this.info = info;
+		}
+
+		protected T getInfo() {
+			return info;
+		}
+
+		protected void setInfo(T info) {
+			this.info = info;
 		}
 
 	}
