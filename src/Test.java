@@ -164,6 +164,7 @@ public class Test {
 		try {
 			test29();
 		} catch (Exception e) {
+			e.printStackTrace();
 			bugFound("test29");
 		}
 		System.out.println(grade);
@@ -952,7 +953,7 @@ public class Test {
 
 	static void test29() {
 		String test = "test29";
-		for (int r = 3; r < 20; r++) {
+		for (int r = 1; r < 20; r++) {
 			fibonacciHeap = new FibonacciHeap();
 			for (int i = -1; i < (int) Math.pow(2, r); i++) {
 				fibonacciHeap.insert(i);

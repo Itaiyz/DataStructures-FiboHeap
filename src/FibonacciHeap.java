@@ -31,7 +31,8 @@ public class FibonacciHeap {
 	 * Complexity: O(1)
 	 */
 	protected int maxPossibleRank() {
-		return (int) (Math.ceil(Math.log(size) / Math.log(2)) + 1);
+		// Adding 1 to size to avoid problems when size==0
+		return (int) (Math.ceil(Math.log(size + 1) / Math.log(2)) + 1);
 	}
 
 	/**
