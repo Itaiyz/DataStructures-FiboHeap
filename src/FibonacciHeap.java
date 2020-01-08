@@ -306,11 +306,6 @@ public class FibonacciHeap {
 	 */
 	protected void link(HeapNode node1, HeapNode node2) {
 
-		if (node1.getRank() != node2.getRank()) {
-			throw new RuntimeException(
-					"We shouldn't get here, only link nodes of equal rank");
-		}
-
 		totalLinks += 1;
 
 		HeapNode small;
