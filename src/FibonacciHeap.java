@@ -233,10 +233,6 @@ public class FibonacciHeap {
 	protected void consolidate() {
 		HeapNode[] arr = new HeapNode[maxPossibleRank() + 1];
 
-		// We already pay for iterating through all trees, no problem
-		// (asymptotically) to brute find min right now
-		this.bruteFindMin();
-
 		HeapNode currNode = this.first;
 		HeapNode nextNode;
 		int currRank = 0;
