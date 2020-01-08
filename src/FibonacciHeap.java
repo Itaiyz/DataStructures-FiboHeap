@@ -234,32 +234,26 @@ public class FibonacciHeap {
 		HeapNode[] arr = new HeapNode[maxPossibleRank() + 1];
 
 		HeapNode currNode = this.first;
-		HeapNode nextNode;
+		HeapNode nextNode = currNode.getNext();
 		int currRank = 0;
 
 		while (numTrees > 0) {
-			// If node hasn't been linked under someone already
-			if (currNode.getParent() == null) {
-				nextNode = currNode.getNext();
-				this.removeNode(currNode);
-				numTrees -= 1;
+			nextNode = currNode.getNext();
+			this.removeNode(currNode);
+			numTrees -= 1;
+			currRank = currNode.getRank();
+			while (arr[currNode.getRank()] != null
+					&& currNode != arr[currNode.getRank()]) {
 				currRank = currNode.getRank();
-				while (arr[currNode.getRank()] != null
-						&& currNode != arr[currNode.getRank()]) {
-					currRank = currNode.getRank();
-					this.link(currNode, arr[currNode.getRank()]);
-					arr[currRank] = null;
-					currRank += 1;
-					if (currNode.getParent() != null) {
-						currNode = currNode.getParent();
-					}
+				this.link(currNode, arr[currNode.getRank()]);
+				arr[currRank] = null;
+				currRank += 1;
+				if (currNode.getParent() != null) {
+					currNode = currNode.getParent();
 				}
-				arr[currRank] = currNode;
-
-			} else {
-				throw new RuntimeException(
-						"We shouldn't get here, successive link reached a non-root");
 			}
+			arr[currRank] = currNode;
+
 			currNode = nextNode;
 		}
 
