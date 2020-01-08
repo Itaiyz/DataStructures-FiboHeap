@@ -1,7 +1,7 @@
 /**
  * FibonacciHeap
  *
- * An implementation of fibonacci heap over integers.
+ * An implementation of Fibonacci Heap over integers.
  * 
  * Submitted by:
  *
@@ -111,8 +111,7 @@ public class FibonacciHeap {
 	 * Creates a node (of type HeapNode) which contains the given key, and
 	 * inserts it into the heap.
 	 * 
-	 * Lazy insertion - inserting the node as a rank 0 node, to be fixed later
-	 * in Delete min.
+	 * Lazy insertion - inserting the node as a new tree of rank 0.
 	 * 
 	 * Calls addRoot which is O(1)
 	 * 
@@ -305,7 +304,7 @@ public class FibonacciHeap {
 	}
 
 	/**
-	 * protected void link(HeapNode node, HeapNode heapNode)
+	 * protected void link(HeapNode node1, HeapNode node2)
 	 * 
 	 * A link operation is the operation which gets as input two trees of the
 	 * same rank, and generates a tree of rank bigger by one, by hanging the
@@ -410,7 +409,7 @@ public class FibonacciHeap {
 	 * Return a counters array, where the value of the i-th entry is the number
 	 * of trees of order i in the heap.
 	 * 
-	 * Complexity: O(log n)
+	 * Complexity: O(n)
 	 * 
 	 */
 	public int[] countersRep() {
@@ -433,7 +432,7 @@ public class FibonacciHeap {
 	 *
 	 * Decreases key to negative infinity and then deletes minimum
 	 *
-	 * Complexity: O(log n)
+	 * Complexity: O(n)
 	 */
 	public void delete(HeapNode x) {
 		decreaseKey(x, x.getKey() - NEG_INFTY);
