@@ -16,7 +16,7 @@ public class Measure {
 			int max = (int) Math.pow(2, exp);
 			FibonacciHeap.HeapNode[] arr = new FibonacciHeap.HeapNode[max + 1];
 
-			long start = System.currentTimeMillis();
+			long start = System.nanoTime();
 
 			for (int i = max; i >= 0; i--) {
 				arr[i] = h.insert(i);
@@ -31,17 +31,15 @@ public class Measure {
 				for (int k = 1; k <= i; k++) {
 					sum += Math.pow(0.5, k);
 				}
-				// System.out.println(sum);
-				// System.out.println(max * sum + 2);
-				h.decreaseKey(arr[(int) (max * sum + 2)], 1);
+				h.decreaseKey(arr[(int) (max * sum + 2)], 2*max);
 
 			}
 
-			h.decreaseKey(arr[max - 1], 1);
+			h.decreaseKey(arr[max - 1], 2*max);
 
 			// Print(h);
 
-			long elapsedTimeMillis = System.currentTimeMillis() - start;
+			long elapsedTimeMillis = System.nanoTime() - start;
 
 			// System.out.println(h.getStart().getPrev().getChild());
 
