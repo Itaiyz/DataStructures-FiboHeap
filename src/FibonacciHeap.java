@@ -361,7 +361,10 @@ public class FibonacciHeap {
 	public void meld(FibonacciHeap heap2) {
 
 		this.last.setNext(heap2.first);
+		heap2.first.setPrev(this.last);
 		this.last = heap2.last;
+		this.last.setNext(this.first);
+		this.first.setPrev(this.last);
 
 		// Update minimum
 		if (this.min.getKey() > heap2.min.getKey()) {
