@@ -31,20 +31,50 @@ public class Measure {
 				for (int k = 1; k <= i; k++) {
 					sum += Math.pow(0.5, k);
 				}
-				h.decreaseKey(arr[(int) (max * sum + 2)], 2*max);
+				h.decreaseKey(arr[(int) (max * sum + 2)], 2 * max);
 
 			}
 
-			h.decreaseKey(arr[max - 1], 2*max);
+			h.decreaseKey(arr[max - 1], 2 * max);
 
 			// Print(h);
 
-			long elapsedTimeMillis = System.nanoTime() - start;
+			long elapsedTimeNanos = System.nanoTime() - start;
 
 			// System.out.println(h.getStart().getPrev().getChild());
 
 			System.out.println(" m: " + max);
-			System.out.println(" time: " + elapsedTimeMillis);
+			System.out.println(" time: " + elapsedTimeNanos);
+			System.out.println(" link: " + FibonacciHeap.totalLinks());
+			System.out.println(" cuts: " + FibonacciHeap.totalCuts());
+			System.out.println(" pot: " + h.potential());
+			// System.out.println(h.numMarked);
+		}
+		for (int mul = 1; mul < 4; mul++) {
+
+			FibonacciHeap h = new FibonacciHeap();
+
+			FibonacciHeap.totalCuts = 0;
+			FibonacciHeap.totalLinks = 0;
+
+			int max = 1000 * mul;
+			FibonacciHeap.HeapNode[] arr = new FibonacciHeap.HeapNode[max + 1];
+
+			long start = System.nanoTime();
+
+			for (int i = max; i >= 1; i--) {
+				arr[i] = h.insert(i);
+			}
+			for (int i = 0; i < mul * 500; i++) {
+				h.deleteMin();
+			}
+
+			long elapsedTimeNanos = System.nanoTime() - start;
+
+			// System.out.println(h.getStart().getPrev().getChild());
+
+			System.out.println(" m: " + max);
+			System.out.println(" time: " + elapsedTimeNanos);
 			System.out.println(" link: " + FibonacciHeap.totalLinks());
 			System.out.println(" cuts: " + FibonacciHeap.totalCuts());
 			System.out.println(" pot: " + h.potential());
