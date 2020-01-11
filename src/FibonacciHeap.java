@@ -558,6 +558,9 @@ public class FibonacciHeap {
 	 * The function should run in O(k(logk + deg(H))).
 	 */
 	public static int[] kMin(FibonacciHeap H, int k) {
+		if (H.isEmpty()) {
+			return new int[0];
+		}
 		int[] arr = new int[k];
 		FibonacciHeap minHeap = new FibonacciHeap();
 		minHeap.addRoot(minHeap.new HeapNodeWithInfo(H.findMin().getKey(),
