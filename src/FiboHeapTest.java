@@ -521,6 +521,7 @@ public class FiboHeapTest {
 			System.out.println("inserted: " + keys.toString());
 			System.out.println(
 					"order of decreased keys: " + ex.getKeys().toString());
+			throw ex;
 		} catch (Exception ex) {
 			System.out.println("inserted: " + keys.toString());
 			throw ex;
@@ -554,7 +555,7 @@ public class FiboHeapTest {
 	}
 
 	public static void main(String[] args) throws Exception {
-		
+
 		testTrees();
 		System.out.println("Finished");
 	}
