@@ -564,27 +564,44 @@ public class FibonacciHeap {
 		if (H.isEmpty()) {
 			return new int[0];
 		}
-		int[] arr = new int[k];
-		FibonacciHeap minHeap = new FibonacciHeap();
-		minHeap.addRoot(minHeap.new HeapNodeWithInfo(H.findMin().getKey(),
-				H.findMin()));
-		HeapNode minNode;
-		for (int i = 0; i < k; i++) {
-			minNode = minHeap.findMin();
-			arr[i] = minNode.getKey();
-			HeapNode currChild = ((HeapNodeWithInfo) minNode).getInfo()
-					.getChild();
-			for (int j = 0; j < ((HeapNodeWithInfo) minNode).getInfo()
-					.getRank(); j++) {
-				minHeap.addRoot(minHeap.new HeapNodeWithInfo(currChild.getKey(),
-						currChild));
-				minHeap.size += 1;
-				currChild = currChild.getNext();
-			}
+		int degH= H.first.rank;
+		int [] res= new int[k]; 
+		res[0]= H.first.key; 
+		HeapNode child= H.first.child;
+		FibonacciHeap minHeap= new FibonacciHeap();
+		HeapNode p0= child;
+		int ind=1;
+		for(int i=0; i<k && ind<k; i++, ind++)
+		{
+			HeapNode p= p0;
+			do
+			{
+				minHeap.insert(p.key);
+				p=p.getNext();
+				
+			}while(p!=child);
+			HeapNode min= minHeap.findMin();
+			res[ind]= min.getKey();	
+			p= child; 
+			//changing min, in order to make it point to the original node in the tree
+			do
+			{
+				if(p.key==min.key)
+				{
+					min=p;
+					break;
+				}
+			} while(p!=child);
 			minHeap.deleteMin();
-		}
-
-		return arr;
+			child= min.child;
+			p=child;
+			if(p==null)
+				child= p0.next;
+			
+		} 
+		
+		return res;
+		
 	}
 
 	/**
@@ -610,6 +627,7 @@ public class FibonacciHeap {
 
 		public int getKey() {
 			return this.key;
+			
 		}
 
 		protected void setKey(int key) {
